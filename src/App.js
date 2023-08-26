@@ -2,6 +2,7 @@ import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import NavBar from "./Routes/NavBar";
 import Login from "./Routes/Login";
 import Home from "./Routes/Home";
 import Announcement from "./Routes/Announcement";
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
       <h1>App Component</h1>
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

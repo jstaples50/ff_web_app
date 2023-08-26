@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "./multi-use-components/NavBar";
 import Carousel from "./multi-use-components/Carousel";
 import Matchups from "./home-components/Matchups";
 import Rankings from "./home-components/Rankings";
@@ -9,7 +8,6 @@ const Home = () => {
   return (
     <div>
       <h1>Home Component</h1>
-      <NavBar />
       <Carousel />
       <Matchups />
       <Rankings />
