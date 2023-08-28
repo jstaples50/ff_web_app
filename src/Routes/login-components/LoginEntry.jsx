@@ -14,6 +14,7 @@ const LoginEntry = () => {
   return (
     <div>
       <h2>LoginEntry Component</h2>
+      <h3>Welcome, Syndicate</h3>
       <h3>Login</h3>
       <form>
         <input
