@@ -19,19 +19,13 @@ function App() {
   useEffect(() => {
     createManagerObjects(setManagers);
     getMatchupData(setMatchups);
-    console.log(managers);
+    // console.log(matchups);
+    // console.log(managers);
   }, []);
 
   return (
     <div className="App">
       <h1>App Component</h1>
-      {/* {managers &&
-        managers.map((manager) => (
-          <p>
-            {manager.managerName} Team Name: {manager.teamName} Roster Id:{" "}
-            {manager.rosterId}
-          </p>
-        ))} */}
       <Router>
         <NavBar />
         <Routes>

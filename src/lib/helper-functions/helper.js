@@ -20,8 +20,10 @@ export const matchupArray = (matchups, managers) => {
     });
     matchupArrayIds.push(indvidualMatchup);
   }
-  // console.log(matchupArrayIds);
+  console.log(matchupArrayIds);
   // console.log(managers);
+
+  return matchupArrayIds;
 };
 
 // New Function to create manager objects
