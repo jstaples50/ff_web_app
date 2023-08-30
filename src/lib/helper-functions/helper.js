@@ -124,3 +124,12 @@ export const createManagerObjects = async (fn) => {
 
   fn(rosterInfoArray);
 };
+
+export const filterByMatchup = (managers) => {
+  const returnedArray = [];
+  for (let i = 1; i < 6; i++) {
+    const result = managers.filter((manager) => manager.matchupId === i);
+    returnedArray.push(result);
+  }
+  return returnedArray;
+};

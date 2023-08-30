@@ -6,20 +6,21 @@ import {
   getAllRosterData,
   createManagerObjects,
   createMatchupArray,
+  filterByMatchup,
 } from "../../lib/helper-functions/helper";
 
 const Matchups = ({ managers }) => {
+  const [matchups, setMatchups] = useState(null);
+
+  useEffect(() => {
+    setMatchups(filterByMatchup(managers));
+  }, [managers]);
+
   return (
     <div>
       <h2>Matchups Component</h2>
-      {managers &&
-        managers.map((manager) => (
-          <p key={manager.userName}>
-            {manager.userName} Matchup Id: {manager.matchupId}
-          </p>
-        ))}
-
-      <VersusComponent />
+      {matchups &&
+        matchups.map((matchup) => <VersusComponent matchup={matchup} />)}
     </div>
   );
 };
