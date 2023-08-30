@@ -66,9 +66,12 @@ export const createManagerObjects = async (fn) => {
   let rosterData = "";
   let matchupData = "";
 
+  const SLEEPER_LEAGUE_2023 = "992218285527326720";
+  const SLEEPER_LEAGUE_2022 = "732814896458264576";
+
   const getLeagueData = async () => {
     await axios
-      .get("https://api.sleeper.app/v1/league/992218285527326720/users")
+      .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/users`)
       .then((response) => {
         userData = response.data;
         // Checks to see if data is being retrieved
@@ -79,7 +82,7 @@ export const createManagerObjects = async (fn) => {
 
   const getRosterData = async () => {
     await axios
-      .get("https://api.sleeper.app/v1/league/992218285527326720/rosters")
+      .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/rosters`)
       .then((response) => {
         rosterData = response.data;
         // console.log("Roster Data Call Check");
@@ -89,7 +92,9 @@ export const createManagerObjects = async (fn) => {
 
   const getMatchupData = async () => {
     await axios
-      .get("https://api.sleeper.app/v1/league/992218285527326720/matchups/1")
+      .get(
+        `https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/matchups/1`
+      )
       .then((response) => {
         matchupData = response.data;
       });
@@ -102,6 +107,11 @@ export const createManagerObjects = async (fn) => {
   const rosterInfoArray = rosterData.map((manager) => ({
     rosterId: manager.roster_id,
     userId: manager.owner_id,
+    results: {
+      wins: manager.settings.wins,
+      losses: manager.settings.losses,
+      ties: manager.settings.ties,
+    },
   }));
 
   // This forEach loop decides the construction of the manager object.
@@ -122,6 +132,7 @@ export const createManagerObjects = async (fn) => {
       : foundUser.display_name;
   });
 
+  console.log(rosterInfoArray);
   fn(rosterInfoArray);
 };
 
@@ -132,4 +143,16 @@ export const filterByMatchup = (managers) => {
     returnedArray.push(result);
   }
   return returnedArray;
+};
+
+export const sortTest = (managers) => {
+  const sortedManagers = managers.sort((a, b) => {
+    if (a.rosterId > b.rosterId) {
+      return -1;
+    }
+    if (a.rosterId < b.rosterId) {
+      return 1;
+    }
+  });
+  return sortedManagers;
 };
