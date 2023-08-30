@@ -20,32 +20,84 @@ export const matchupArray = (matchups, managers) => {
     });
     matchupArrayIds.push(indvidualMatchup);
   }
-  console.log(matchupArrayIds);
+  // console.log(matchupArrayIds);
   // console.log(managers);
 
   return matchupArrayIds;
 };
 
-// New Function to create manager objects
+// ATTEMPT 3
+
+// export const createMatchupArray = async (managers, fn) => {
+//   let matchupData = "";
+
+//   const getMatchupData = async () => {
+//     await axios
+//       .get("https://api.sleeper.app/v1/league/992218285527326720/matchups/1")
+//       .then((response) => {
+//         matchupData = response.data;
+//       });
+//   };
+
+//   await getMatchupData();
+
+//   const matchupArray = [];
+//   for (let i = 0; i < 5; i++) {
+//     let indvidualMatchup = [];
+//     matchupData.forEach((team) => {
+//       if (team.matchup_id === i + 1) {
+//         const foundTeam = managers.find(
+//           (element) => element.rosterId === team.roster_id
+//         );
+//         // console.log(foundTeam);
+//         indvidualMatchup.push(foundTeam);
+//       }
+//     });
+//     matchupArray.push(indvidualMatchup);
+//   }
+//   // console.log(matchupArray);
+//   fn(matchupArray);
+// };
+
+// Attempt to combine manager object and matchup info
 
 export const createManagerObjects = async (fn) => {
   let userData = "";
   let rosterData = "";
+  let matchupData = "";
 
   const getLeagueData = async () => {
     await axios
       .get("https://api.sleeper.app/v1/league/992218285527326720/users")
-      .then((response) => (userData = response.data));
+      .then((response) => {
+        userData = response.data;
+        // Checks to see if data is being retrieved
+        // console.log("League Data Call Check");
+        // console.log(userData);
+      });
   };
 
   const getRosterData = async () => {
     await axios
       .get("https://api.sleeper.app/v1/league/992218285527326720/rosters")
-      .then((response) => (rosterData = response.data));
+      .then((response) => {
+        rosterData = response.data;
+        // console.log("Roster Data Call Check");
+        // console.log(rosterData);
+      });
+  };
+
+  const getMatchupData = async () => {
+    await axios
+      .get("https://api.sleeper.app/v1/league/992218285527326720/matchups/1")
+      .then((response) => {
+        matchupData = response.data;
+      });
   };
 
   await getLeagueData();
   await getRosterData();
+  await getMatchupData();
 
   const rosterInfoArray = rosterData.map((manager) => ({
     rosterId: manager.roster_id,
@@ -59,6 +111,11 @@ export const createManagerObjects = async (fn) => {
     const foundUser = userData.find(
       (element) => element.user_id === manager.userId
     );
+    const matchupId = matchupData.find(
+      (element) => element.roster_id === manager.rosterId
+    );
+
+    manager.matchupId = matchupId.matchup_id;
     manager.userName = foundUser.display_name;
     manager.teamName = foundUser.metadata.team_name
       ? foundUser.metadata.team_name

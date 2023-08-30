@@ -4,12 +4,12 @@ import Matchups from "./home-components/Matchups";
 import Rankings from "./home-components/Rankings";
 import TicketDisplay from "./home-components/TicketDisplay";
 
-const Home = ({ managers, matchups }) => {
+const Home = ({ managers }) => {
   return (
     <div>
       <h1>Home Component</h1>
       <Carousel />
-      <Matchups managers={managers} matchups={matchups} />
+      <Matchups managers={managers} />
       <Rankings />
       <TicketDisplay />
     </div>

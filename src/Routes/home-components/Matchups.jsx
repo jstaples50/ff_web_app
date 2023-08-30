@@ -5,30 +5,20 @@ import {
   matchupArray,
   getAllRosterData,
   createManagerObjects,
+  createMatchupArray,
 } from "../../lib/helper-functions/helper";
 
-const Matchups = ({ managers, matchups }) => {
-  const [versus, setVersus] = useState([]);
-
-  useEffect(() => {
-    setVersus(matchupArray(matchups, managers));
-    // console.log(versus);
-  }, []);
+const Matchups = ({ managers }) => {
   return (
     <div>
       <h2>Matchups Component</h2>
-      {/* {managers && managers.map((manager) => <p>{manager.userName}</p>)} */}
-
-      {versus &&
-        versus.map((pair) => (
-          <p>
-            {pair[0].teamName} vs {pair[1].teamName}
+      {managers &&
+        managers.map((manager) => (
+          <p key={manager.userName}>
+            {manager.userName} Matchup Id: {manager.matchupId}
           </p>
         ))}
 
-      <VersusComponent />
-      <VersusComponent />
-      <VersusComponent />
       <VersusComponent />
     </div>
   );

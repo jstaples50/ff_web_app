@@ -9,17 +9,18 @@ import Home from "./Routes/Home";
 import Announcement from "./Routes/Announcement";
 import Profile from "./Routes/Profile";
 
-import { createManagerObjects } from "./lib/helper-functions/helper";
+import {
+  createManagerObjects,
+  createMatchupArray,
+} from "./lib/helper-functions/helper";
 import { getMatchupData } from "./apis/sleeper/apiCalls";
 
 function App() {
   const [managers, setManagers] = useState([]);
-  const [matchups, setMatchups] = useState([]);
+  // const [matchups, setMatchups] = useState([]);
 
   useEffect(() => {
     createManagerObjects(setManagers);
-    getMatchupData(setMatchups);
-    // console.log(matchups);
     // console.log(managers);
   }, []);
 
@@ -31,7 +32,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home managers={managers} matchups={matchups} />}
+            element={managers ? <Home managers={managers} /> : null}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/announcement" element={<Announcement />} />
