@@ -3,7 +3,6 @@ import TeamRank from "./section-components/TeamRank";
 import { sortByRankings } from "../../lib/helper-functions/helper";
 
 const Rankings = ({ managers }) => {
-  // const [rankings, setRankings] = useState(null)
   const sortedByRankingsManagerArray = sortByRankings(managers);
   return (
     <div>

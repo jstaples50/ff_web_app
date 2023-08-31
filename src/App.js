@@ -9,15 +9,10 @@ import Home from "./Routes/Home";
 import Announcement from "./Routes/Announcement";
 import Profile from "./Routes/Profile";
 
-import {
-  createManagerObjects,
-  createMatchupArray,
-} from "./lib/helper-functions/helper";
-import { getMatchupData } from "./apis/sleeper/apiCalls";
+import { createManagerObjects } from "./lib/helper-functions/helper";
 
 function App() {
   const [managers, setManagers] = useState([]);
-  // const [matchups, setMatchups] = useState([]);
 
   useEffect(() => {
     createManagerObjects(setManagers);

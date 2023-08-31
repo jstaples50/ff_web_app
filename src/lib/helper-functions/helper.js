@@ -1,65 +1,7 @@
 // helper functions here
 import axios from "axios";
 
-// Function to check if a manager is facing another manager for the week
-
-// TODO: This function is based on the assumption that the roster id is the same in matchups as it is in the managers objects. They are not
-
-export const matchupArray = (matchups, managers) => {
-  const matchupArrayIds = [];
-  for (let i = 0; i < 5; i++) {
-    let indvidualMatchup = [];
-    matchups.forEach((team) => {
-      if (team.matchup_id === i + 1) {
-        const foundTeam = managers.find(
-          (element) => element.rosterId === team.roster_id
-        );
-        // console.log(foundTeam);
-        indvidualMatchup.push(foundTeam);
-      }
-    });
-    matchupArrayIds.push(indvidualMatchup);
-  }
-  // console.log(matchupArrayIds);
-  // console.log(managers);
-
-  return matchupArrayIds;
-};
-
-// ATTEMPT 3
-
-// export const createMatchupArray = async (managers, fn) => {
-//   let matchupData = "";
-
-//   const getMatchupData = async () => {
-//     await axios
-//       .get("https://api.sleeper.app/v1/league/992218285527326720/matchups/1")
-//       .then((response) => {
-//         matchupData = response.data;
-//       });
-//   };
-
-//   await getMatchupData();
-
-//   const matchupArray = [];
-//   for (let i = 0; i < 5; i++) {
-//     let indvidualMatchup = [];
-//     matchupData.forEach((team) => {
-//       if (team.matchup_id === i + 1) {
-//         const foundTeam = managers.find(
-//           (element) => element.rosterId === team.roster_id
-//         );
-//         // console.log(foundTeam);
-//         indvidualMatchup.push(foundTeam);
-//       }
-//     });
-//     matchupArray.push(indvidualMatchup);
-//   }
-//   // console.log(matchupArray);
-//   fn(matchupArray);
-// };
-
-// Attempt to combine manager object and matchup info
+// Function to retrieve data from Sleeper API and reorganize it into an array of manager objects
 
 export const createManagerObjects = async (fn) => {
   let userData = "";
@@ -74,10 +16,9 @@ export const createManagerObjects = async (fn) => {
       .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/users`)
       .then((response) => {
         userData = response.data;
-        // Checks to see if data is being retrieved
-        // console.log("League Data Call Check");
         // console.log(userData);
-      });
+      })
+      .catch((err) => console.error(err));
   };
 
   const getRosterData = async () => {
@@ -85,9 +26,9 @@ export const createManagerObjects = async (fn) => {
       .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/rosters`)
       .then((response) => {
         rosterData = response.data;
-        // console.log("Roster Data Call Check");
         // console.log(rosterData);
-      });
+      })
+      .catch((err) => console.error(err));
   };
 
   const getMatchupData = async () => {
@@ -97,14 +38,18 @@ export const createManagerObjects = async (fn) => {
       )
       .then((response) => {
         matchupData = response.data;
-      });
+        // console.log(matchupData);
+      })
+      .catch((err) => console.error(err));
   };
 
   await getLeagueData();
   await getRosterData();
   await getMatchupData();
 
-  const rosterInfoArray = rosterData.map((manager) => ({
+  // This map function maps out data from the rosterData GET request into manager objects
+
+  const managerObjectsArray = rosterData.map((manager) => ({
     rosterId: manager.roster_id,
     userId: manager.owner_id,
     results: {
@@ -118,10 +63,10 @@ export const createManagerObjects = async (fn) => {
       manager.settings.ties / 2,
   }));
 
-  // This forEach loop decides the construction of the manager object.
-  // Additions to manager object occur here
+  // This forEach loop grabs the relevant data from the leagueData and matchupData GET requests and adds it to the
+  // previously created manager objects
 
-  rosterInfoArray.forEach((manager) => {
+  managerObjectsArray.forEach((manager) => {
     const foundUser = userData.find(
       (element) => element.user_id === manager.userId
     );
@@ -136,8 +81,8 @@ export const createManagerObjects = async (fn) => {
       : foundUser.display_name;
   });
 
-  console.log(rosterInfoArray);
-  fn(rosterInfoArray);
+  // console.log(managerObjectsArray);
+  fn(managerObjectsArray);
 };
 
 export const filterByMatchup = (managers) => {
