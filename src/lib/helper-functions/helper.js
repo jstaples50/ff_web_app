@@ -1,51 +1,20 @@
 // helper functions here
 import axios from "axios";
+import {
+  getLeagueData,
+  getRosterData,
+  getMatchupData,
+} from "../../apis/sleeper/apiCalls";
 
 // Function to retrieve data from Sleeper API and reorganize it into an array of manager objects
 
 export const createManagerObjects = async (fn) => {
-  let userData = "";
-  let rosterData = "";
-  let matchupData = "";
-
   const SLEEPER_LEAGUE_2023 = "992218285527326720";
   const SLEEPER_LEAGUE_2022 = "732814896458264576";
 
-  const getLeagueData = async () => {
-    await axios
-      .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/users`)
-      .then((response) => {
-        userData = response.data;
-        // console.log(userData);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const getRosterData = async () => {
-    await axios
-      .get(`https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/rosters`)
-      .then((response) => {
-        rosterData = response.data;
-        // console.log(rosterData);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const getMatchupData = async () => {
-    await axios
-      .get(
-        `https://api.sleeper.app/v1/league/${SLEEPER_LEAGUE_2022}/matchups/1`
-      )
-      .then((response) => {
-        matchupData = response.data;
-        // console.log(matchupData);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  await getLeagueData();
-  await getRosterData();
-  await getMatchupData();
+  const userData = await getLeagueData(SLEEPER_LEAGUE_2022);
+  const rosterData = await getRosterData(SLEEPER_LEAGUE_2022);
+  const matchupData = await getMatchupData(SLEEPER_LEAGUE_2022);
 
   // This map function maps out data from the rosterData GET request into manager objects
 
@@ -56,6 +25,7 @@ export const createManagerObjects = async (fn) => {
       wins: manager.settings.wins,
       losses: manager.settings.losses,
       ties: manager.settings.ties,
+      totalPoints: manager.settings.fpts,
     },
     rankingPoints:
       manager.settings.wins -
@@ -81,7 +51,7 @@ export const createManagerObjects = async (fn) => {
       : foundUser.display_name;
   });
 
-  // console.log(managerObjectsArray);
+  console.log(managerObjectsArray);
   fn(managerObjectsArray);
 };
 

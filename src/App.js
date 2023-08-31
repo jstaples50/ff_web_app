@@ -8,6 +8,8 @@ import Login from "./Routes/Login";
 import Home from "./Routes/Home";
 import Announcement from "./Routes/Announcement";
 import Profile from "./Routes/Profile";
+import LeagueHistory from "./Routes/LeagueHistory";
+import PointSystem from "./Routes/PointSystem";
 
 import { createManagerObjects } from "./lib/helper-functions/helper";
 
@@ -43,6 +45,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/announcement" element={<Announcement />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/pointsystem" element={<PointSystem />} />
+          <Route path="/leaguehistory" element={<LeagueHistory />} />
         </Routes>
       </Router>
     </div>

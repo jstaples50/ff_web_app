@@ -18,6 +18,12 @@ const NavBar = () => {
         <Link to={"/profile"}>
           <li key={"profile"}>Profile</li>
         </Link>
+        <Link to={"/pointsystem"}>
+          <li key={"pointsystem"}>Point System</li>
+        </Link>
+        <Link to={"/leaguehistory"}>
+          <li key={"leaguehistory"}>League History</li>
+        </Link>
       </ul>
     </div>
   );
