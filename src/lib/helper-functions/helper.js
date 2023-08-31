@@ -112,6 +112,10 @@ export const createManagerObjects = async (fn) => {
       losses: manager.settings.losses,
       ties: manager.settings.ties,
     },
+    rankingPoints:
+      manager.settings.wins -
+      manager.settings.losses +
+      manager.settings.ties / 2,
   }));
 
   // This forEach loop decides the construction of the manager object.
@@ -145,14 +149,15 @@ export const filterByMatchup = (managers) => {
   return returnedArray;
 };
 
-export const sortTest = (managers) => {
+export const sortByRankings = (managers) => {
   const sortedManagers = managers.sort((a, b) => {
-    if (a.rosterId > b.rosterId) {
-      return -1;
-    }
-    if (a.rosterId < b.rosterId) {
+    if (a.rankingPoints < b.rankingPoints) {
       return 1;
     }
+    if (a.rankingPoints > b.rankingPoints) {
+      return -1;
+    }
+    return 0;
   });
   return sortedManagers;
 };

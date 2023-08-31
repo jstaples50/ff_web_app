@@ -10,7 +10,7 @@ const Home = ({ managers }) => {
       <h1>Home Component</h1>
       <Carousel />
       <Matchups managers={managers} />
-      <Rankings />
+      <Rankings managers={managers} />
       <TicketDisplay />
     </div>
   );

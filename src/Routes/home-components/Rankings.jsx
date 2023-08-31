@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TeamRank from "./section-components/TeamRank";
+import { sortByRankings } from "../../lib/helper-functions/helper";
 
-const Rankings = () => {
+const Rankings = ({ managers }) => {
+  // const [rankings, setRankings] = useState(null)
+  const sortedByRankingsManagerArray = sortByRankings(managers);
   return (
     <div>
       <h2>Rankings Component</h2>
-      <TeamRank />
-      <TeamRank />
-      <TeamRank />
-      <TeamRank />
-      <TeamRank />
+      {managers &&
+        sortedByRankingsManagerArray.map((manager, index) => (
+          <TeamRank manager={manager} placement={index + 1} />
+        ))}
     </div>
   );
 };
