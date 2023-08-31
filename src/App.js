@@ -11,19 +11,30 @@ import Profile from "./Routes/Profile";
 
 import { createManagerObjects } from "./lib/helper-functions/helper";
 
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
 function App() {
   const [managers, setManagers] = useState([]);
+  const [isNavDisplayed, setIsNavDisplayed] = useState(false);
 
   useEffect(() => {
     createManagerObjects(setManagers);
     // console.log(managers);
   }, []);
 
+  const handleNavClick = () => {
+    !isNavDisplayed ? setIsNavDisplayed(true) : setIsNavDisplayed(false);
+  };
+
   return (
     <div className="App">
       <h1>App Component</h1>
       <Router>
-        <NavBar />
+        <IconButton onClick={handleNavClick}>
+          <MenuIcon />
+        </IconButton>
+        {isNavDisplayed && <NavBar />}
         <Routes>
           <Route
             path="/"
