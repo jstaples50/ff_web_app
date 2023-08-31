@@ -1,12 +1,12 @@
 import React from "react";
-import Carousel from "./multi-use-components/Carousel";
+import CarouselComponent from "./multi-use-components/ScrollComponent";
 import TeamComment from "./announce-components/TeamComment";
 
 const Announcement = () => {
   return (
     <div>
       <h1>Announcement Component</h1>
-      <Carousel />
+      <CarouselComponent />
       <TeamComment />
     </div>
   );
