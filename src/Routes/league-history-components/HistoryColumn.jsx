@@ -1,5 +1,6 @@
 import React from "react";
 import IndividualBadge from "./IndividualBadge";
+import { getLeagueData } from "../../apis/sleeper/apiCalls";
 
 const HistoryColumn = () => {
   return (

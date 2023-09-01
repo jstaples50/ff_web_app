@@ -16,6 +16,7 @@ const CarouselComponent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAnnouncements([...announcements, newEntry]);
+    setNewEntry("");
   };
 
   const handleInputClear = () => {
@@ -38,7 +39,6 @@ const CarouselComponent = () => {
         />
         <button disabled={newEntry === ""}>Submit</button>
       </form>
-      {/* {announcements && announcements.map((entry) => <p>{entry}</p>)} */}
     </div>
   );
 };

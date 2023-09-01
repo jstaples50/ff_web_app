@@ -8,13 +8,10 @@ import {
 
 // Function to retrieve data from Sleeper API and reorganize it into an array of manager objects
 
-export const createManagerObjects = async (fn) => {
-  const SLEEPER_LEAGUE_2023 = "992218285527326720";
-  const SLEEPER_LEAGUE_2022 = "732814896458264576";
-
-  const userData = await getLeagueData(SLEEPER_LEAGUE_2022);
-  const rosterData = await getRosterData(SLEEPER_LEAGUE_2022);
-  const matchupData = await getMatchupData(SLEEPER_LEAGUE_2022);
+export const createManagerObjects = async (fn, leagueYear) => {
+  const userData = await getLeagueData(leagueYear);
+  const rosterData = await getRosterData(leagueYear);
+  const matchupData = await getMatchupData(leagueYear);
 
   // This map function maps out data from the rosterData GET request into manager objects
 
@@ -51,7 +48,7 @@ export const createManagerObjects = async (fn) => {
       : foundUser.display_name;
   });
 
-  console.log(managerObjectsArray);
+  // console.log(managerObjectsArray);
   fn(managerObjectsArray);
 };
 

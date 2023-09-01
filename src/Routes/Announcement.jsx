@@ -1,5 +1,5 @@
 import React from "react";
-import CarouselComponent from "./multi-use-components/ScrollComponent";
+import CarouselComponent from "./multi-use-components/CarouselComponent";
 import TeamComment from "./announce-components/TeamComment";
 
 const Announcement = () => {

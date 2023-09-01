@@ -1,1 +1,5 @@
-// Manager database here
+// Sleeper Legaue endpoints
+
+export const SLEEPER_LEAGUE_2023 = "992218285527326720";
+export const SLEEPER_LEAGUE_2022 = "845481404941844480";
+export const SLEEPER_LEAGUE_2021 = "732814896458264576";

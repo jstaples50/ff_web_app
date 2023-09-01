@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CarouselComponent from "./multi-use-components/ScrollComponent";
+import CarouselComponent from "./multi-use-components/CarouselComponent";
 import Matchups from "./home-components/Matchups";
 import Rankings from "./home-components/Rankings";
 import TicketDisplay from "./home-components/TicketDisplay";

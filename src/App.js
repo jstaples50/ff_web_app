@@ -12,6 +12,11 @@ import LeagueHistory from "./Routes/LeagueHistory";
 import PointSystem from "./Routes/PointSystem";
 
 import { createManagerObjects } from "./lib/helper-functions/helper";
+import {
+  SLEEPER_LEAGUE_2021,
+  SLEEPER_LEAGUE_2022,
+  SLEEPER_LEAGUE_2023,
+} from "./apis/manager-database/managerDatabase";
 
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,7 +26,7 @@ function App() {
   const [isNavDisplayed, setIsNavDisplayed] = useState(false);
 
   useEffect(() => {
-    createManagerObjects(setManagers);
+    createManagerObjects(setManagers, SLEEPER_LEAGUE_2022);
     // console.log(managers);
   }, []);
 
