@@ -49,9 +49,12 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/announcement" element={<Announcement />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/pointsystem" element={<PointSystem />} />
           <Route path="/leaguehistory" element={<LeagueHistory />} />
+          <Route
+            path="/profile/:userId"
+            element={managers ? <Profile managers={managers} /> : null}
+          />
         </Routes>
       </Router>
     </div>

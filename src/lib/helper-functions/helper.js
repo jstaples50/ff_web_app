@@ -48,7 +48,7 @@ export const createManagerObjects = async (fn, leagueYear) => {
       : foundUser.display_name;
   });
 
-  // console.log(managerObjectsArray);
+  console.log(managerObjectsArray);
   fn(managerObjectsArray);
 };
 

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import TeamCard from "./profile-components/TeamCard";
 import Ticket from "./multi-use-components/Ticket";
 
-const Profile = () => {
+const Profile = ({ managers }) => {
+  const { userId } = useParams();
+  const filteredManagers = managers.filter(
+    (manager) => manager.userId === userId
+  )[0];
+
   return (
     <div>
       <h1>Profile Component</h1>
-      <TeamCard />
+      <TeamCard team={filteredManagers} />
       <p>Tickets Earned</p>
       <Ticket />
       <Ticket />

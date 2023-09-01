@@ -11,7 +11,6 @@ const Home = ({ managers }) => {
       <CarouselComponent />
       <Matchups managers={managers} />
       <Rankings managers={managers} />
-      <TicketDisplay />
     </div>
   );
 };
