@@ -6,14 +6,14 @@ import Ticket from "./multi-use-components/Ticket";
 
 const Profile = ({ managers }) => {
   const { userId } = useParams();
-  const filteredManagers = managers.filter(
+  const filteredManager = managers.filter(
     (manager) => manager.userId === userId
   )[0];
 
   return (
     <div>
       <h1>Profile Component</h1>
-      <TeamCard team={filteredManagers} />
+      <TeamCard team={filteredManager} />
       <p>Tickets Earned</p>
       <Ticket />
       <Ticket />

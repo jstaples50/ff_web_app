@@ -30,10 +30,14 @@ export const createManagerObjects = async (fn, leagueYear) => {
       manager.settings.ties / 2,
   }));
 
+  // Sort manager array by ranking
+
+  sortByRankings(managerObjectsArray);
+
   // This forEach loop grabs the relevant data from the leagueData and matchupData GET requests and adds it to the
   // previously created manager objects
 
-  managerObjectsArray.forEach((manager) => {
+  managerObjectsArray.forEach((manager, index) => {
     const foundUser = userData.find(
       (element) => element.user_id === manager.userId
     );
@@ -46,22 +50,14 @@ export const createManagerObjects = async (fn, leagueYear) => {
     manager.teamName = foundUser.metadata.team_name
       ? foundUser.metadata.team_name
       : foundUser.display_name;
+    manager.ranking = index + 1;
   });
 
   console.log(managerObjectsArray);
   fn(managerObjectsArray);
 };
 
-export const filterByMatchup = (managers) => {
-  const returnedArray = [];
-  for (let i = 1; i < 6; i++) {
-    const result = managers.filter((manager) => manager.matchupId === i);
-    returnedArray.push(result);
-  }
-  return returnedArray;
-};
-
-export const sortByRankings = (managers) => {
+const sortByRankings = (managers) => {
   const sortedManagers = managers.sort((a, b) => {
     if (a.rankingPoints < b.rankingPoints) {
       return 1;
@@ -72,4 +68,13 @@ export const sortByRankings = (managers) => {
     return 0;
   });
   return sortedManagers;
+};
+
+export const filterByMatchup = (managers) => {
+  const returnedArray = [];
+  for (let i = 1; i < 6; i++) {
+    const result = managers.filter((manager) => manager.matchupId === i);
+    returnedArray.push(result);
+  }
+  return returnedArray;
 };
