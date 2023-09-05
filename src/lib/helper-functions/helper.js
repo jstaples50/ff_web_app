@@ -6,6 +6,8 @@ import {
   getMatchupData,
 } from "../../apis/sleeper/apiCalls";
 
+import { setManagerCredentialsInLocalStorage } from "./localStorage";
+
 // Function to retrieve data from Sleeper API and reorganize it into an array of manager objects
 
 export const createManagerObjects = async (fn, leagueYear) => {
@@ -28,6 +30,7 @@ export const createManagerObjects = async (fn, leagueYear) => {
       manager.settings.wins -
       manager.settings.losses +
       manager.settings.ties / 2,
+    password: "password",
   }));
 
   // Sort manager array by ranking
@@ -53,7 +56,9 @@ export const createManagerObjects = async (fn, leagueYear) => {
     manager.ranking = index + 1;
   });
 
-  console.log(managerObjectsArray);
+  // console.log(managerObjectsArray);
+
+  setManagerCredentialsInLocalStorage(managerObjectsArray);
   fn(managerObjectsArray);
 };
 

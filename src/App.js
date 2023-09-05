@@ -26,7 +26,7 @@ function App() {
   const [isNavDisplayed, setIsNavDisplayed] = useState(false);
 
   useEffect(() => {
-    createManagerObjects(setManagers, SLEEPER_LEAGUE_2022);
+    createManagerObjects(setManagers, SLEEPER_LEAGUE_2021);
     // console.log(managers);
   }, []);
 
@@ -47,7 +47,10 @@ function App() {
             path="/"
             element={managers ? <Home managers={managers} /> : null}
           />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={managers ? <Login managers={managers} /> : null}
+          />
           <Route path="/announcement" element={<Announcement />} />
           <Route path="/pointsystem" element={<PointSystem />} />
           <Route path="/leaguehistory" element={<LeagueHistory />} />

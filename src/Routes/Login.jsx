@@ -2,11 +2,11 @@ import React from "react";
 import LoginEntry from "./login-components/LoginEntry";
 import ThirdPartyAuth from "./login-components/ThirdPartyAuth";
 
-const Login = () => {
+const Login = ({ managers }) => {
   return (
     <div>
       <h1>Login Component</h1>
-      <LoginEntry />
+      <LoginEntry managers={managers} />
       <p>-----------</p>
       <ThirdPartyAuth />
     </div>

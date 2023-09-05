@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { getCurrentManagerInLocalStorage } from "../lib/helper-functions/localStorage";
+
 const NavBar = () => {
+  const [currentManager, setCurrentManager] = useState(null);
+  const [check, setCheck] = useState(false);
+
+  useEffect(() => {
+    setCurrentManager(getCurrentManagerInLocalStorage());
+  }, [check]);
+
+  const handleCheckChange = () => {
+    check ? setCheck(false) : setCheck(true);
+  };
+
   return (
     <div>
       <h2>NavBar Component</h2>
@@ -15,8 +28,12 @@ const NavBar = () => {
         <Link to={"/announcement"}>
           <li key={"announcement"}>Announcement</li>
         </Link>
-        <Link to={"/profile"}>
-          <li key={"profile"}>Profile</li>
+        <Link
+          to={currentManager ? `/profile/${currentManager.userId}` : "/profile"}
+        >
+          <li key={"profile"} onClick={handleCheckChange}>
+            Profile
+          </li>
         </Link>
         <Link to={"/pointsystem"}>
           <li key={"pointsystem"}>Point System</li>

@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { getCurrentManagerInLocalStorage } from "../lib/helper-functions/localStorage";
 
 import TeamCard from "./profile-components/TeamCard";
 import Ticket from "./multi-use-components/Ticket";
