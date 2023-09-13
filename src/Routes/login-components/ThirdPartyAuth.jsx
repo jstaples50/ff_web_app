@@ -2,12 +2,13 @@ import React from "react";
 import ThirdPartyBadge from "./section-components/ThirdPartyBadge";
 
 const ThirdPartyAuth = () => {
+  const socialPlatformArray = ["Sleeper", "Google", "Facebook"];
+
   return (
     <div>
-      <h2>ThirdPartyAuth Component</h2>
-      <ThirdPartyBadge />
-      <ThirdPartyBadge />
-      <ThirdPartyBadge />
+      {socialPlatformArray.map((badge) => (
+        <ThirdPartyBadge socialPlatform={badge} />
+      ))}
     </div>
   );
 };

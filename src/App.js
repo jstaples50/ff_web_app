@@ -20,6 +20,7 @@ import {
 
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { CssBaseline } from "@mui/material";
 
 function App() {
   const [managers, setManagers] = useState([]);
@@ -38,6 +39,7 @@ function App() {
     <div className="App">
       <h1>App Component</h1>
       <Router>
+        <CssBaseline />
         <IconButton onClick={handleNavClick}>
           <MenuIcon />
         </IconButton>
