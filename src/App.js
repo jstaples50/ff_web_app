@@ -27,7 +27,7 @@ function App() {
   const [isNavDisplayed, setIsNavDisplayed] = useState(false);
 
   useEffect(() => {
-    createManagerObjects(setManagers, SLEEPER_LEAGUE_2021);
+    createManagerObjects(setManagers, SLEEPER_LEAGUE_2023);
     // console.log(managers);
   }, []);
 

@@ -12,7 +12,7 @@ const Matchups = ({ managers }) => {
 
   return (
     <div>
-      <h2>Matchups Component</h2>
+      <h4>This Weeks Matchups</h4>
       {matchups &&
         matchups.map((matchup) => <VersusComponent matchup={matchup} />)}
     </div>

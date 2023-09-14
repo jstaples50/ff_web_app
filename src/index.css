@@ -28,3 +28,19 @@ body,
   color: white;
   cursor: pointer;
 }
+
+/* ANNOUNCEMENT ENTRY psudeo elements styling */
+.announcement-button:disabled {
+  color: black;
+}
+
+.announcement-button:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/* VERSUS COMPONENT link styling */
+.profile-link:hover {
+  color: white;
+  cursor: pointer;
+}

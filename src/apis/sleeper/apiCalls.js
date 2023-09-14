@@ -30,7 +30,7 @@ export const getRosterData = async (leagueYear) => {
 export const getMatchupData = async (leagueYear) => {
   let data = "";
   await axios
-    .get(`https://api.sleeper.app/v1/league/${leagueYear}/matchups/1`)
+    .get(`https://api.sleeper.app/v1/league/${leagueYear}/matchups/2`)
     .then((response) => {
       data = response.data;
       // console.log(data);

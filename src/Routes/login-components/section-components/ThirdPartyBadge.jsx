@@ -23,6 +23,7 @@ const ThirdPartyBadge = ({ socialPlatform }) => {
           className="social-badge"
           display={"flex"}
           justifyContent={"flex-start"}
+          alignItems={"center"}
           width={"200px"}
         >
           <Box
