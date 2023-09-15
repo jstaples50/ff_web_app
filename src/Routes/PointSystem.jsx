@@ -1,97 +1,65 @@
 import React from "react";
+import { Box } from "@mui/material";
+import { pointSystemData, ticketData } from "../lib/pointSystemData";
+import Ticket from "./multi-use-components/Ticket";
 
 const PointSystem = () => {
   return (
     <div>
-      <h1>Point System Component</h1>
       <h2>Matchup Scoring</h2>
-      <div className="scoring-system">
-        <h3>Passing</h3>
-        <ul>
-          <li>Passing Yards: 1pt per 25yds</li>
-          <li>Passing TD: 4pts</li>
-          <li>2pt Conversion: 2pts</li>
-          <li>Pass Intercepted: -1</li>
-        </ul>
-        <h3>Rushing</h3>
-        <ul>
-          <li>Rushing Yards: 1pt per 10yds</li>
-          <li>Rushing TD: 6pts</li>
-          <li>2pt Conversion: 2pts</li>
-        </ul>
-        <h3>Receiving</h3>
-        <ul>
-          <li>Reception: 0.5pts</li>
-          <li>Receiving Yards: 1pt per 10yds</li>
-          <li>Receiving TD: 6pts</li>
-          <li>2pt Conversion: 2pts</li>
-        </ul>
-        <h3>Kicking</h3>
-        <ul>
-          <li>FG Made:</li>
-          <ul>
-            <li>0-19yds: 3pts</li>
-            <li>20-29yds: 3pts</li>
-            <li>30-39yds: 3pts</li>
-            <li>40-49yds: 4pts</li>
-            <li>50+yds: 5pts</li>
-          </ul>
-          <li>PAT Made: 1pt</li>
-          <li>FG Missed: -1pt</li>
-          <li>PAT Missed: -1pt</li>
-        </ul>
-        <h3>Team Defense</h3>
-        <ul>
-          <li>Defense TD: 6pts</li>
-          <li>Points Allowed:</li>
-          <ul>
-            <li>0: 10pts</li>
-            <li>1-6: 7pts</li>
-            <li>7-13: 4pts</li>
-            <li>21-27: 0pts</li>
-            <li>28-34: -1pts</li>
-            <li>35+: -4pts</li>
-          </ul>
-          <li>Sack: 1pt</li>
-          <li>Interception: 2pts</li>
-          <li>Fumble Recovery: 2pts</li>
-          <li>Safety: 2pts</li>
-          <li>Forced Fumble: 1pt</li>
-          <li>Blocked Kick: 2pts</li>
-        </ul>
-        <h3>Special Teams/Special Teams Player</h3>
-        <ul>
-          <li>Special Teams TD: 6pts</li>
-          <li>Special Teams Forced Fumble: 1pt</li>
-          <li>Special Teams Forced Fumble Recovery: 1pt</li>
-        </ul>
-        <h3>Miscellaneous</h3>
-        <ul>
-          <li>Fumble: -1pts</li>
-          <li>Fumble Lost: -2pts</li>
-          <li>Fumble Recovery TD: 6pts</li>
-        </ul>
+      <div
+        className="scoring-system"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        {pointSystemData.length &&
+          pointSystemData.map((pointObj) => (
+            <ScoringBadge pointObj={pointObj} />
+          ))}
       </div>
       <h2>Lottery Ticket System</h2>
       <p>
         Here is an explanation of the lottery ticket point system for the next
         year draft
       </p>
-      <div className="ticket-system">
-        <h4>Weekly Tickets</h4>
-        <ul>
-          <li>Best Team on the Week: 3 Tickets</li>
-          <li>Worst Team on the Week: 2 Tickets</li>
-          <li>Most Efficient Manager of the Week: 2 Tickets</li>
-          <li>Least Efficient Manager of the Week: 0.5 Tickets</li>
-          <li>Overachiever: 1 Ticket</li>
-          <li>Biggest Blowout: 1 Ticket</li>
-          <li>Player of the Week (per position): 1 Ticket</li>
-          <li>Benchwarmer of the Week (per position): 0.5 Tickets</li>
-          <li>Highest Points in Loss: 0.5 Tickets</li>
-        </ul>
-        <h4>Season Tickets</h4>
-        <ul>
+      <h4>Weekly Tickets</h4>
+      <Box
+        className="weekly-tickets"
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flexDirection={"column"}
+        width={"100vw"}
+      >
+        {ticketData.length &&
+          ticketData.map((ticketObj) =>
+            ticketObj.category === "weekly" ? (
+              <Ticket ticketObj={ticketObj} />
+            ) : null
+          )}
+      </Box>
+      <h4>Season Tickets</h4>
+      <Box
+        className="season-tickets"
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flexDirection={"column"}
+        width={"100vw"}
+      >
+        {ticketData.length &&
+          ticketData.map((ticketObj) =>
+            ticketObj.category === "season" ? (
+              <Ticket ticketObj={ticketObj} />
+            ) : null
+          )}
+      </Box>
+      {/* Keep this data for league history section */}
+      {/* <ul>
           <li>
             Champion: 15 Tickets{" "}
             <span style={{ fontWeight: "bold" }}>2022 Season: Lyujohn</span>
@@ -170,9 +138,28 @@ const PointSystem = () => {
               2022 Season: Jared and Fortuna
             </span>
           </li>
-        </ul>
-      </div>
+        </ul> */}
     </div>
+  );
+};
+
+const ScoringBadge = ({ pointObj }) => {
+  return (
+    <Box
+      className="scoring-badge"
+      display={"flex"}
+      alignItems={"flex-start"}
+      justifyContent={"flex-start"}
+      flexDirection={"column"}
+      width={"380px"}
+    >
+      <h3>{pointObj.title}</h3>
+      <ul style={{ listStyle: "none", textAlign: "left" }}>
+        {pointObj.info.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </Box>
   );
 };
 
