@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ff_web_app/static/css/main.8f5e774f.css",
+    "main.js": "/ff_web_app/static/js/main.f07ac62f.js",
+    "index.html": "/ff_web_app/index.html",
+    "main.8f5e774f.css.map": "/ff_web_app/static/css/main.8f5e774f.css.map",
+    "main.f07ac62f.js.map": "/ff_web_app/static/js/main.f07ac62f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f5e774f.css",
+    "static/js/main.f07ac62f.js"
+  ]
+}
