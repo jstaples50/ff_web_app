@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { colors } from "../theme";
 
 import { getCurrentManagerInLocalStorage } from "../lib/helper-functions/localStorage";
 
@@ -17,29 +18,64 @@ const NavBar = () => {
 
   return (
     <div>
-      <h2>NavBar Component</h2>
-      <ul style={{ listStyle: "none" }}>
-        <Link to={"/"}>
-          <li key={"home"}>Home</li>
+      <ul
+        style={{
+          listStyle: "none",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Link
+          to={"/"}
+          style={{ textDecoration: "none", color: colors.confirm }}
+        >
+          <li key={"home"} style={{ margin: "4px" }}>
+            Home
+          </li>
         </Link>
-        <Link to={"/login"}>
-          <li key={"login"}>Login</li>
+        <Link
+          to={"/login"}
+          style={{ textDecoration: "none", color: colors.confirm }}
+        >
+          <li key={"login"} style={{ margin: "4px" }}>
+            Login
+          </li>
         </Link>
-        <Link to={"/announcement"}>
-          <li key={"announcement"}>Announcement</li>
+        <Link
+          to={"/announcement"}
+          style={{ textDecoration: "none", color: colors.confirm }}
+        >
+          <li key={"announcement"} style={{ margin: "4px" }}>
+            Announcement
+          </li>
         </Link>
         <Link
           to={currentManager ? `/profile/${currentManager.userId}` : "/profile"}
+          style={{ textDecoration: "none", color: colors.confirm }}
         >
-          <li key={"profile"} onClick={handleCheckChange}>
+          <li
+            key={"profile"}
+            onClick={handleCheckChange}
+            style={{ margin: "4px" }}
+          >
             Profile
           </li>
         </Link>
-        <Link to={"/pointsystem"}>
-          <li key={"pointsystem"}>Point System</li>
+        <Link
+          to={"/pointsystem"}
+          style={{ textDecoration: "none", color: colors.confirm }}
+        >
+          <li key={"pointsystem"} style={{ margin: "4px" }}>
+            Point System
+          </li>
         </Link>
-        <Link to={"/leaguehistory"}>
-          <li key={"leaguehistory"}>League History</li>
+        <Link
+          to={"/leaguehistory"}
+          style={{ textDecoration: "none", color: colors.confirm }}
+        >
+          <li key={"leaguehistory"} style={{ margin: "4px" }}>
+            League History
+          </li>
         </Link>
       </ul>
     </div>

@@ -11,7 +11,6 @@ import { Box } from "@mui/material";
 const Home = ({ managers, setRankingNums }) => {
   return (
     <div>
-      <h1>Home Component</h1>
       <CarouselComponent />
       <Matchups managers={managers} />
       <Box

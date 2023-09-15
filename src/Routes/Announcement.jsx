@@ -5,7 +5,6 @@ import CommentChat from "./announce-components/CommentChat";
 const Announcement = () => {
   return (
     <div>
-      <h1>Announcement Component</h1>
       <CarouselComponent />
       <CommentChat />
     </div>

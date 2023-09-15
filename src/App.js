@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>App Component</h1>
+      <h1>The Syndicate</h1>
       <Router>
         <CssBaseline />
         <IconButton onClick={handleNavClick}>
