@@ -14,7 +14,6 @@ const Profile = ({ managers }) => {
 
   return (
     <div>
-      <h1>Profile Component</h1>
       <TeamCard team={filteredManager} />
       <p>Tickets Earned</p>
       {/* <Ticket />

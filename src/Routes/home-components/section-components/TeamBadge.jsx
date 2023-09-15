@@ -14,7 +14,7 @@ const TeamBadge = ({ team }) => {
   return (
     <div>
       {team && (
-        <Link to={`profile/${team.userId}`} style={{ textDecoration: "none" }}>
+        <Link to={`/profile/${team.userId}`} style={{ textDecoration: "none" }}>
           <Box
             className="team-badge"
             display={"flex"}
