@@ -46,7 +46,7 @@ function App() {
         {isNavDisplayed && <NavBar />}
         <Routes>
           <Route
-            path="/"
+            path="/ff_web_app"
             element={managers ? <Home managers={managers} /> : null}
           />
           <Route
