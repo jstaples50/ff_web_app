@@ -26,7 +26,7 @@ const NavBar = () => {
         }}
       >
         <Link
-          to={"/"}
+          to={"/ff_web_app"}
           style={{ textDecoration: "none", color: colors.confirm }}
         >
           <li key={"home"} style={{ margin: "4px" }}>
