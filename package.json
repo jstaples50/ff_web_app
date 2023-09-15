@@ -1,4 +1,5 @@
 {
+  "homepage": "http://jstaples50.github.io/ff_web_app",
   "name": "ff_web_app",
   "version": "0.1.0",
   "private": true,
@@ -20,7 +21,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://jstaples50.github.io/ff_web_app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
